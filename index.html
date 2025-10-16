@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brasil CEP - API PÃºblica de Consulta de CEPs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: white;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .logo .b { color: #009c3b; }
+        .logo .r { color: #ffdf00; }
+        .logo .a { color: #009c3b; }
+        .logo .s { color: #ffdf00; }
+        .logo .i { color: #009c3b; }
+        .logo .l { color: #ffdf00; }
+        .logo .space { color: #333; }
+        .logo .c { color: #002776; }
+        .logo .e { color: #002776; }
+        .logo .p { color: #002776; }
+
+        header p {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .main-content {
+            background: white;
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+        }
+
+        .endpoint {
+            background: #f8f8f8;
+            border-left: 3px solid #009c3b;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .code-block {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .features li:before {
+            content: "âœ“";
+            position: absolute;
+            left: 0;
+            color: #009c3b;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cta-section h2 {
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #009c3b;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: #007a2e;
+        }
+
+        .button-secondary {
+            background: #002776;
+        }
+
+        .button-secondary:hover {
+            background: #001a56;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            background: white;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+
+            .cta-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="b">B</span><span class="r">r</span><span class="a">a</span><span class="s">s</span><span class="i">i</span><span class="l">l</span><span class="space"> </span><span class="c">C</span><span class="e">E</span><span class="p">P</span>
+            </div>
+            <p>API PÃºblica e Gratuita de Consulta de CEPs do Brasil</p>
+        </header>
+
+        <div class="main-content">
+            <div class="section">
+                <h2>Sobre o Projeto</h2>
+                <p>O Brasil CEP Ã© um serviÃ§o pÃºblico e gratuito que disponibiliza uma API REST para consulta de informaÃ§Ãµes sobre CEPs brasileiros. Ãštil para serviÃ§os logÃ­sticos, sistemas de cadastro e qualquer aplicaÃ§Ã£o que necessite validar e obter dados de endereÃ§os.</p>
+                
+                <ul class="features">
+                    <li>Alta disponibilidade</li>
+                    <li>Dados atualizados</li>
+                    <li>Totalmente gratuito</li>
+                    <li>Sem limite de requisiÃ§Ãµes</li>
+                    <li>Open source</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Como Usar</h2>
+                
+                <div class="endpoint">
+                    <strong>Endpoint:</strong>
+                    <div class="code-block">https://brasilcep.com.br/v1/{CEP}.json</div>
+                    
+                    <strong>Exemplo:</strong>
+                    <div class="code-block">https://brasilcep.com.br/v1/26535460.json</div>
+                </div>
+
+                <strong>Resposta JSON:</strong>
+                <div class="code-block">{
+  "cep": "26535-460",
+  "logradouro": "Rua Exemplo",
+  "complemento": "",
+  "bairro": "Centro",
+  "localidade": "Nova IguaÃ§u",
+  "uf": "RJ",
+  "ibge": "3303500",
+  "gia": "",
+  "ddd": "21",
+  "siafi": "5869"
+}</div>
+            </div>
+
+            <div class="section">
+                <h2>Exemplos de Consumo</h2>
+                
+                <p><strong>JavaScript:</strong></p>
+                <div class="code-block">fetch('https://brasilcep.com.br/v1/26535460.json')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Erro:', error));</div>
+
+                <p><strong>Python:</strong></p>
+                <div class="code-block">import requests
+
+response = requests.get('https://brasilcep.com.br/v1/26535460.json')
+data = response.json()
+print(data)</div>
+
+                <p><strong>PHP:</strong></p>
+                <div class="code-block">$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, 'https://brasilcep.com.br/v1/26535460.json');
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($curl);
+curl_close($curl);
+$data = json_decode($response);
+print_r($data);</div>
+            </div>
+
+            <div class="section">
+                <h2>Filosofia</h2>
+                <p>O Brasil CEP nasceu da necessidade de ter um serviÃ§o de consulta de CEPs verdadeiramente aberto, gratuito e confiÃ¡vel. Acreditamos que dados pÃºblicos devem ser acessÃ­veis a todos, sem barreiras ou custos.</p>
+                
+                <p>Este Ã© um projeto open source desenvolvido e mantido pela comunidade. Sua contribuiÃ§Ã£o Ã© fundamental para manter o serviÃ§o de qualidade.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Contribua com o Projeto</h2>
+            <p>Encontrou um CEP desatualizado? Quer baixar a base completa? Acesse nosso repositÃ³rio no GitHub.</p>
+            <a href="https://github.com/ceelsoin/brasilcep.github.io" target="_blank" class="button">RepositÃ³rio GitHub</a>
+            <a href="https://github.com/ceelsoin/brasilcep.github.io/issues" target="_blank" class="button button-secondary">Reportar Problema</a>
+        </div>
+
+        <footer>
+            <p>Brasil CEP - Um projeto open source para a comunidade brasileira</p>
+        </footer>
+    </div>
+</body>
+</html>
